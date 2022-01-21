@@ -5,7 +5,10 @@ class Api::AmenitiesController < ApplicationController
     render json: @amenities
   end
 
-  def show
+  def destroy
+    @amenity = Amenity.find params[:id]
+    @amenity.destroy
+
   end
 
 end

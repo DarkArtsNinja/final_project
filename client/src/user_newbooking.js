@@ -124,7 +124,7 @@ export default function NewBooking(props) {
            ...state,
            events: [...state.events, newAppointment]
           })
-              })
+        })
       )
     }
   }
@@ -150,8 +150,8 @@ export default function NewBooking(props) {
                 console.log(event);
                 const events = [...previousState.events];
                 const indexOfSelectedEvent = events.indexOf(event);
-                console.log("I am index", indexOfSelectedEvent);
-                console.log("this is all the events booked", events[0]);
+                // console.log("I am index", indexOfSelectedEvent);
+                // console.log("this is all the events booked", events[0]);
                 // events.splice(indexOfSelectedEvent, 1);
                 return { events };
               })

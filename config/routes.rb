@@ -15,7 +15,8 @@ Rails.application.routes.draw do
     resources :amenities, only: [:show]
     
     scope 'admin' do
-      resources :amenities, only: [:index]
+      resources :amenities, only: [:index, :destroy, :put]
+
     end
 
     # namespace :admin do
