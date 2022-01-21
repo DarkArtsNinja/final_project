@@ -37,11 +37,13 @@ export default function Manage() {
   console.log("this is the name of the amenities in server:", amenities.map((room, index) => room.name ) );
 
   const [selectedAmenity, setSelectedAmenity] = useState(null)
+  
+  const [selectedCapacity, setSelectedCapacity] = useState(null)
 
 
   const deleteAmenity = (amenity_id) => {
 
-    const confirmation = window.confirm(`Are you sure you want to delete ${amenity_id}?`)
+    const confirmation = window.confirm(`Are you sure you want to delete?`)
     
     if (confirmation){
       //send delete request to backend servers
@@ -51,13 +53,13 @@ export default function Manage() {
       return
     }
   }
-  const updateAmenity = (amenity_id) => {
+  const updateAmenity = (amenity_id, new_capacity) => {
 
-    const confirmation = window.confirm(`Are you sure you want to update ${amenity_id}?`)
+    const confirmation = window.confirm(`Are you sure you want to update?`)
     
     if (confirmation){
       //send delete request to backend servers
-      axios.put(`/api/admin/amenities/${amenity_id}`, )
+      axios.put(`/api/admin/amenities/${amenity_id}`, {capacity: new_capacity} )
       return
     } else {
       return
@@ -93,7 +95,7 @@ export default function Manage() {
             <tr>
               <td>Max Capacity for Bookings (Per Hour)</td>
               <td>
-              <select name="rooms" id="rooms">
+              <select name="rooms" id="rooms" onChange= {(event) => setSelectedCapacity(event.target.innerHTML)}>
                   <option value="option0">1</option>
                   <option value="option1">2</option>
                   <option value="option2">5</option>
@@ -101,13 +103,13 @@ export default function Manage() {
                   <option value="option4">20</option>
                   <option value="option2">50</option>
                   <option value="option3">100</option>
-                </select>
+              </select>
                 </td>
             </tr>
           </tbody>
         </table>
         <div className="edit_amenities">
-          <button className="add" onClick={() => updateAmenity(selectedAmenity)}>Save Changes</button>
+          <button className="add" onClick={() => updateAmenity(selectedAmenity, selectedCapacity)}>Save Changes</button>
           <button className="add" onClick={() => deleteAmenity(selectedAmenity)}>Delete Amenity</button>
         </div>
         
